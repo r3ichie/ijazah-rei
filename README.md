@@ -1,2 +1,2 @@
 # ijazah-rei
-Ijazah
+berisi ijazah yang dibuat dengan html dan css
