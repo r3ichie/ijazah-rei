@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ijazah Siswa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <button id="backBtn">← Kembali</button>
+    <div id="ijazahCard" class="ijazah-card"></div>
+  </div>
+
+  <script>
+    if (sessionStorage.getItem('loggedIn') !== 'true') {
+      window.location.href = 'index.html';
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+
+    const students = {
+      1: { name: 'Andi Saputra', nisn: '1234567890', jurusan: 'Teknik Komputer dan Jaringan', tahun: '2024' },
+      2: { name: 'Siti Aminah', nisn: '0987654321', jurusan: 'Akuntansi', tahun: '2024' },
+      3: { name: 'Budi Santoso', nisn: '1122334455', jurusan: 'Multimedia', tahun: '2024' },
+      4: { name: 'Rina Marlina', nisn: '5566778899', jurusan: 'Administrasi Perkantoran', tahun: '2024' }
+    };
+
+    const ijazahCard = document.getElementById('ijazahCard');
+
+    if (!id || !students[id]) {
+      ijazahCard.innerHTML = '<p>Siswa tidak ditemukan.</p>';
+    } else {
+      const s = students[id];
+      ijazahCard.innerHTML = `
+        <h3>Ijazah SMK</h3>
+        <p><strong>Nama:</strong> ${s.name}</p>
+        <p><strong>NISN:</strong> ${s.nisn}</p>
+        <p><strong>Jurusan:</strong> ${s.jurusan}</p>
+        <p><strong>Tahun Lulus:</strong> ${s.tahun}</p>
+        <hr />
+        <p>Ijazah ini diberikan sebagai bukti kelulusan dan pencapaian kompetensi pada program keahlian <em>${s.jurusan}</em> di SMK kami.</p>
+      `;
+    }
+
+    document.getElementById('backBtn').addEventListener('click', () => {
+      window.location.href = 'dashboard.html';
+    });
+  </script>
+</body>
+</html>

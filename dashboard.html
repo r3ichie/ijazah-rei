@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard - Pilih Ijazah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Daftar Siswa</h2>
+    <button id="logoutBtn">Logout</button>
+    <ul id="studentList"></ul>
+  </div>
+
+  <script>
+    if (sessionStorage.getItem('loggedIn') !== 'true') {
+      window.location.href = 'index.html';
+    }
+
+    const students = [
+      { id: 1, name: 'Andi Saputra' },
+      { id: 2, name: 'Siti Aminah' },
+      { id: 3, name: 'Budi Santoso' },
+      { id: 4, name: 'Rina Marlina' }
+    ];
+
+    const list = document.getElementById('studentList');
+    students.forEach(s => {
+      const li = document.createElement('li');
+      li.innerHTML = `<a href="ijazah.html?id=${s.id}">${s.name}</a>`;
+      list.appendChild(li);
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      sessionStorage.clear();
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>
